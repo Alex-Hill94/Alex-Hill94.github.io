@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Dr. Alex Hill's Work Blog
 
 You can use the [editor on GitHub](https://github.com/Alex-Hill94/Alex-Hill94.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
 
