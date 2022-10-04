@@ -3,7 +3,7 @@
 # Data Science Fellow 
 
 Download C++ textbook <a href="textbook.pdf">here</a>
-Slides Download <a href="WS_one.pptx">here</a>
+Slides Download <a href="Workshop_One.pdf">here</a>
 
 [Example code here](docs/PageOne.md)
 
