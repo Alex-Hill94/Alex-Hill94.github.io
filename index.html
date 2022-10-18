@@ -160,7 +160,7 @@
 								<ul>
 									<li> <a href="#WS1">Workshop One (3/10/22)</a></li>
 									<li> <a href="#WS2">Workshop Two (11/10/22)</a></li>
-									<li> <a href="#WS3">Workshop Two (18/10/22)</a></li>
+									<li> <a href="#WS3">Workshop Three (18/10/22)</a></li>
 								  </ul>
 
 								
@@ -217,8 +217,83 @@ int main() {
 								<h2 class="major">Introduction to C++</h2>
 
 								<p> In this workshop we explored references, pointers, passing vectors and arrays into functions. The slides can be found <a href=  "Workshop/Intro_to_C++/Workshop_Three.pptx">here.</a></p>
-								
-																
+
+								<p> Below is an example script that creates an vector of thetas, computes sin(2*theta), and saves the data in a numpy format.</p>
+								<pre><code>
+#include &ltiostream&gt
+#include &ltcmath&gt
+#include &ltvector&gt
+#include &ltfstream&gt // : Stream class to both read and write from/to files.
+
+using namespace std;
+	
+
+int main()
+{	int k;
+	cout << "Input n_vals:";
+	cin >> k;
+	vector &ltdouble&gt thetas(k);
+	vector &ltdouble&gt ans;
+
+	for (int i = 0; i < k; ++i)
+	{
+		thetas.at(i) = i * (1./(k-1)) * M_PI;
+	}
+	for (int i = 0; i < k; ++i)
+	{
+		ans.push_back(sin(2. * thetas.at(i)));
+	}
+
+	ofstream myfile;
+	myfile.open ("data.py");
+
+	myfile << "import numpy as np" << "\n" << "\n";
+
+	myfile << "theta = np.array((" << "\n";
+
+	for (double j: thetas){
+		if (j != thetas.back()){
+		myfile << j << ", " << "\n";
+		}
+		else{
+		myfile << j << "\n";
+	
+		}
+	}
+	myfile << "))"<< "\n" << "\n";
+
+	myfile << "ans = np.array((" << "\n";
+
+	for (double j: ans){
+		if (j != ans.back()){
+		myfile << j << ", " << "\n";
+		}
+		else{
+		myfile << j << "\n";}
+	}
+	myfile << "))" << "\n";
+
+	myfile.close();
+	return 0;
+}
+
+																			
+																			
+																	   
+																	   </code></pre>																	
+<p> You can then plot this using:</p>
+
+<pre><code>import matplotlib.pyplot as plt
+from data import *
+
+plt.figure()
+
+plt.plot(theta, ans)
+
+plt.show()
+
+np.save('data.npy', theta)	
+</code></pre>													
 							</article>
 
 						<!-- Contact -->
