@@ -27,13 +27,20 @@ void f_master(const vector<double>& input, vector<double>& output)
 
  }
 
-void write_out_vec(const string& filename, string& array_name , const vector<double>& output)
+void write_out_vec(const string& filename, string& array_name , const vector<double>& output, bool initialise = true)
+    // Writes out data in numpy form. If initialise == true, creates file from scratch and includes top lines needed
+
  {
 
  ofstream myfile;
- myfile.open (filename, std::ios_base::app); 
  
+ if (initialise){
+	myfile.open (filename);
+	myfile << "import numpy as np" << "\n" << "\n";}
+
+ else{myfile.open (filename, std::ios_base::app);}
  myfile << array_name << " = np.array((" << "\n";
+
 
  for (auto i = 0; i < output.size(); ++i)
  {
@@ -78,17 +85,17 @@ int main()
 
 	f_master(x_range, fx_range);
 
-	ofstream myfile;
-	myfile.open (filename);
-
-	myfile << "import numpy as np" << "\n" << "\n";
-	myfile.close();
-
+	// ofstream myfile;
+	// myfile.open (filename);
+// 
+	// myfile << "import numpy as np" << "\n" << "\n";
+	// myfile.close();
+// 
 	string x_lab = "x_range";
 	string fx_lab = "fx_range";
 
 	write_out_vec(filename, x_lab , x_range);
-	write_out_vec(filename, fx_lab , fx_range);
+	write_out_vec(filename, fx_lab , fx_range, false);
 
 	return 0; 
 	}
